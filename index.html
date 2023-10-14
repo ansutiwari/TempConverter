@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #container {
+            margin: 50px auto;
+            width: 300px;
+        }
+        input[type="number"] {
+            width: 100px;
+            padding: 5px;
+        }
+        select {
+            width: 100px;
+            padding: 5px;
+        }
+        button {
+            padding: 5px 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Temperature Converter</h1>
+    <div id="container">
+        <input type="number" id="temperature" placeholder="Enter temperature">
+        <select id="fromUnit">
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+        </select>
+        <p>Convert to</p>
+        <select id="toUnit">
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+        </select>
+        <button onclick="convertTemperature()">Convert</button>
+        <p id="result"></p>
+    </div>
+    <script>
+        function convertTemperature() {
+            var temperature = pareFloat(document.getElementById("temperature").value);
+            var fromUnit = document.getElementById("fromUnit").value;
+            var toUnit = document.getElementById("toUnit").value;
+            var result = 0;
+
+            if (fromUnit === "celsius" && toUnit === "fahrenheit") {
+                result = (temperature * 9/5) + 32;
+            } else if (fromUnit === "fahrenheit" && toUnit === "celsius") {
+                result = (temperature - 32) * 5/9;
+            } else {
+                result = temperature; // If the units are the same, no conversion needed.
+            }
+
+            document.getElementById("result").innerHTML = "Result: " + result.toFixed(2) + " " + toUnit;
+        }
+    </script>
+</body>
+</html>
